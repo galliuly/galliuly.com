@@ -614,13 +614,18 @@
     return;
   }
 
-  var TRIGGER = 0.8; // trigger line, as a fraction of the viewport height
-  var STRETCH = 0.35; // extra scroll (in viewport heights) the reveal spreads over
+  var TRIGGER = 0.65; // trigger line, as a fraction of the viewport height
+  var STRETCH = 0.6; // extra scroll (in viewport heights) the reveal spreads over
+  // If the tagline is already past the trigger line when the page opens (tall
+  // screens), the reveal starts from zero at that point and still needs at
+  // least this much scrolling (in viewport heights) to finish.
+  var MIN_SCROLL = 0.6;
 
   var el = null;
   var words = [];
   var progress = 0; // 0..1, highest point reached
   var ticking = false;
+  var loadScroll = null; // scroll position when the reveal was first set up
 
   function build() {
     el = document.querySelector("[data-tagline]");
@@ -664,9 +669,31 @@
     }
     var rect = el.getBoundingClientRect();
     var viewport = window.innerHeight || document.documentElement.clientHeight;
-    var trigger = viewport * TRIGGER;
-    var span = rect.height + viewport * STRETCH;
-    var current = (trigger - rect.top) / span;
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+    if (loadScroll === null) {
+      loadScroll = scrollY;
+      // Opened already scrolled past the tagline (e.g. a reload mid-page):
+      // just show it lit.
+      if (rect.bottom < 0) {
+        progress = 1;
+        paint();
+        return;
+      }
+    }
+
+    // Work in page scroll positions: the reveal runs from `start` to `end`.
+    var top = rect.top + scrollY;
+    var start = top - viewport * TRIGGER; // tagline top reaches the trigger line
+    var end = start + rect.height + viewport * STRETCH;
+    if (loadScroll > start) {
+      // Already past the trigger when the page opened: nothing is lit yet,
+      // and the visitor still has to scroll a meaningful distance.
+      start = loadScroll;
+      end = Math.max(end, loadScroll + viewport * MIN_SCROLL);
+    }
+
+    var current = (scrollY - start) / (end - start);
     if (current > progress) {
       progress = Math.min(1, current);
       paint();

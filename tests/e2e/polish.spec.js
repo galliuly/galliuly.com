@@ -19,7 +19,7 @@ test("tagline words light up one by one as the page scrolls, and stay lit", asyn
 
   const start = await litCounts(page);
   expect(start.total).toBeGreaterThan(5);
-  expect(start.lit).toBeLessThan(start.total); // not everything lit before scrolling
+  expect(start.lit).toBe(0); // nothing lit before scrolling
 
   // Scroll in small steps and record how many words are lit at each step.
   const seen = [];
@@ -40,6 +40,35 @@ test("tagline words light up one by one as the page scrolls, and stay lit", asyn
 
   // Scrolling back up keeps them lit.
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await page.waitForTimeout(100);
+  expect((await litCounts(page)).lit).toBe(start.total);
+});
+
+test("on a tall screen where the tagline is visible at load, nothing is lit until the visitor scrolls", async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1400 });
+  await page.goto("index.html");
+  await page.waitForTimeout(300);
+
+  // The tagline is on screen right away on this size...
+  const visible = await page.evaluate(() => {
+    const r = document.querySelector("[data-tagline]").getBoundingClientRect();
+    return r.top < window.innerHeight;
+  });
+  expect(visible).toBe(true);
+
+  // ...but no word is lit yet.
+  const start = await litCounts(page);
+  expect(start.lit).toBe(0);
+
+  // A small scroll lights only part of it: it takes real scrolling to finish.
+  await page.evaluate(() => window.scrollTo({ top: 150, behavior: "instant" }));
+  await page.waitForTimeout(100);
+  const partial = await litCounts(page);
+  expect(partial.lit).toBeGreaterThan(0);
+  expect(partial.lit).toBeLessThan(partial.total);
+
+  // Scrolling further finishes it.
+  await page.evaluate(() => window.scrollTo({ top: 1400, behavior: "instant" }));
   await page.waitForTimeout(100);
   expect((await litCounts(page)).lit).toBe(start.total);
 });

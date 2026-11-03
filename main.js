@@ -356,3 +356,341 @@
     initReveal();
   }
 })();
+
+// ---------------------------------------------------------------------------
+// Certifications carousel (progressive enhancement).
+//
+// The HTML holds one list of badges in a sideways-scrollable strip. Here we:
+//   - append an aria-hidden duplicate of the list, so the strip loops forever
+//     (positions are kept inside the first copy, and the second copy makes the
+//     jump back invisible);
+//   - auto-advance the strip slowly, pausing only while offscreen, during
+//     keyboard focus, and while the visitor drags or swipes it;
+//   - let the visitor drag the strip with the mouse to browse faster (touch
+//     screens use their native swipe). When the drag ends, the auto-advance
+//     resumes right away from where they let go.
+// A drag never opens the Credly link; only a plain click does.
+// prefers-reduced-motion: no auto-advance; dragging still works.
+// Every lookup is guarded; any failure leaves the static, scrollable strip.
+// ---------------------------------------------------------------------------
+(function () {
+  if (typeof document === "undefined" || typeof window === "undefined") {
+    return;
+  }
+
+  var SPEED = 0.03; // auto-advance, in pixels per millisecond (~30px/s)
+  var DRAG_THRESHOLD = 5; // px a press must move before it counts as a drag
+  var SETTLE_TIME = 200; // ms of quiet after a swipe/trackpad scroll before resuming
+
+  function now() {
+    return window.performance && typeof window.performance.now === "function"
+      ? window.performance.now()
+      : Date.now();
+  }
+
+  function initCertCarousel() {
+    var root = document.querySelector("[data-cert-carousel]");
+    if (!root) {
+      return;
+    }
+
+    var viewport = root.querySelector(".cert-viewport");
+    var track = root.querySelector("[data-cert-track]");
+    var list = track ? track.querySelector(".cert-list") : null;
+    if (!viewport || !list || track.querySelectorAll(".cert-list").length > 1) {
+      return; // missing markup, or already initialized
+    }
+
+    var prefersReduced =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    var copy = list.cloneNode(true);
+    copy.setAttribute("aria-hidden", "true");
+    track.appendChild(copy);
+    root.classList.add("is-enhanced");
+    if (!prefersReduced) {
+      track.classList.add("is-animated");
+    }
+
+    // Width of one copy of the list (it carries trailing padding equal to the
+    // gap, so two copies side by side repeat exactly).
+    function period() {
+      return list.offsetWidth;
+    }
+
+    // Bring a scroll position back inside the first copy.
+    function wrap(value) {
+      var p = period();
+      if (p <= 0) {
+        return value;
+      }
+      while (value >= p) {
+        value -= p;
+      }
+      while (value < 0) {
+        value += p;
+      }
+      return value;
+    }
+
+    var pos = 0; // float position, so slow speeds are not lost to rounding
+    var resumeAt = 0;
+    var focused = false;
+    var visible = true;
+    var touching = false;
+    var dragging = false;
+    var dragMoved = false;
+    var dragStartX = 0;
+    var dragStartLeft = 0;
+
+    // The browser's own image/link dragging would fight the custom drag.
+    Array.prototype.forEach.call(track.querySelectorAll("img"), function (img) {
+      img.setAttribute("draggable", "false");
+    });
+    var link = root.querySelector(".cert-carousel-link");
+    if (link) {
+      link.addEventListener("dragstart", function (event) {
+        event.preventDefault();
+      });
+      // A press that turned into a drag must not open Credly.
+      link.addEventListener("click", function (event) {
+        if (dragMoved) {
+          event.preventDefault();
+          event.stopPropagation();
+          dragMoved = false;
+        }
+      }, true);
+    }
+
+    // Mouse drag. Touch and pen keep the native swipe (handled below).
+    viewport.addEventListener("pointerdown", function (event) {
+      if (event.pointerType !== "mouse" || event.button !== 0) {
+        return;
+      }
+      dragging = true;
+      dragMoved = false;
+      dragStartX = event.clientX;
+      dragStartLeft = viewport.scrollLeft;
+    });
+
+    viewport.addEventListener("pointermove", function (event) {
+      if (!dragging) {
+        return;
+      }
+      var dx = event.clientX - dragStartX;
+      if (!dragMoved) {
+        if (Math.abs(dx) < DRAG_THRESHOLD) {
+          return; // still just a click
+        }
+        dragMoved = true;
+        root.classList.add("is-dragging");
+        try {
+          viewport.setPointerCapture(event.pointerId);
+        } catch (err) {
+          // Capture is a nicety; the drag still works without it.
+        }
+      }
+      // Wrapping keeps the drag endless in both directions.
+      pos = wrap(dragStartLeft - dx);
+      viewport.scrollLeft = pos;
+    });
+
+    function endDrag() {
+      if (!dragging) {
+        return;
+      }
+      dragging = false;
+      root.classList.remove("is-dragging");
+      resumeAt = 0; // continue the auto-advance right away
+      if (dragMoved) {
+        // The click that follows the release (same task) is still blocked;
+        // after that, the link works normally again (e.g. keyboard Enter).
+        window.setTimeout(function () {
+          dragMoved = false;
+        }, 0);
+      }
+    }
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+    viewport.addEventListener("lostpointercapture", endDrag);
+    window.addEventListener("pointerup", endDrag); // released outside the strip
+
+    // Touch swipe: pause while the finger is down, resume once it settles.
+    viewport.addEventListener("touchstart", function () {
+      touching = true;
+    }, { passive: true });
+    function endTouch() {
+      touching = false;
+      resumeAt = now() + SETTLE_TIME;
+    }
+    viewport.addEventListener("touchend", endTouch, { passive: true });
+    viewport.addEventListener("touchcancel", endTouch, { passive: true });
+
+    // Pause for keyboard focus only (a mouse click on the link focuses it in
+    // some browsers, and that should not freeze the strip).
+    root.addEventListener("focusin", function (event) {
+      var target = event.target;
+      try {
+        focused = !!(target && target.matches && target.matches(":focus-visible"));
+      } catch (err) {
+        focused = true; // old browser without :focus-visible
+      }
+    });
+    root.addEventListener("focusout", function () {
+      focused = false;
+    });
+
+    viewport.addEventListener("scroll", function () {
+      var left = viewport.scrollLeft;
+      // A scroll we did not cause (swipe momentum, trackpad): let it settle
+      // before the auto-advance takes over again.
+      if (!dragging && Math.abs(left - pos) > 2) {
+        resumeAt = now() + SETTLE_TIME;
+      }
+      // Keep the loop seamless when a swipe runs past the first copy.
+      if (left >= period()) {
+        viewport.scrollLeft = left - period();
+      }
+    }, { passive: true });
+
+    if (typeof window.IntersectionObserver === "function") {
+      new window.IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          visible = entries[i].isIntersecting;
+        }
+      }).observe(root);
+    }
+
+    if (prefersReduced || typeof window.requestAnimationFrame !== "function") {
+      return; // dragging only, no auto-advance
+    }
+
+    var last = null;
+    function frame(time) {
+      var dt = last === null ? 0 : Math.min(time - last, 64);
+      last = time;
+
+      var running = visible && !focused && !dragging && !touching && time >= resumeAt;
+      if (running) {
+        pos = wrap(pos + dt * SPEED);
+        viewport.scrollLeft = pos;
+      } else {
+        pos = viewport.scrollLeft; // pick up wherever the visitor left it
+      }
+      window.requestAnimationFrame(frame);
+    }
+    window.requestAnimationFrame(frame);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCertCarousel);
+  } else {
+    initCertCarousel();
+  }
+})();
+
+// ---------------------------------------------------------------------------
+// Tagline word-by-word reveal (progressive enhancement).
+//
+// The authored tagline is plain text at full color (also the no-JS view). Here
+// each word is wrapped in .tagline-word, which CSS mutes. As the visitor
+// scrolls the tagline up past a trigger line, words light up one at a time in
+// reading order. Progress only moves forward, so words never dim again.
+//   - Scroll work is throttled through requestAnimationFrame.
+//   - After a language switch (the "i18n:applied" event), the new text is
+//     re-split and keeps the progress already reached.
+//   - prefers-reduced-motion: the text is left as is, at full color.
+// ---------------------------------------------------------------------------
+(function () {
+  if (typeof document === "undefined" || typeof window === "undefined") {
+    return;
+  }
+
+  var prefersReduced =
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) {
+    return;
+  }
+
+  var TRIGGER = 0.8; // trigger line, as a fraction of the viewport height
+  var STRETCH = 0.35; // extra scroll (in viewport heights) the reveal spreads over
+
+  var el = null;
+  var words = [];
+  var progress = 0; // 0..1, highest point reached
+  var ticking = false;
+
+  function build() {
+    el = document.querySelector("[data-tagline]");
+    if (!el) {
+      return;
+    }
+    var text = (el.textContent || "").replace(/\s+/g, " ").trim();
+    if (!text) {
+      return;
+    }
+
+    el.textContent = "";
+    words = [];
+    var parts = text.split(" ");
+    for (var i = 0; i < parts.length; i++) {
+      var span = document.createElement("span");
+      span.className = "tagline-word";
+      span.textContent = parts[i];
+      el.appendChild(span);
+      words.push(span);
+      if (i < parts.length - 1) {
+        el.appendChild(document.createTextNode(" "));
+      }
+    }
+    paint();
+    update();
+  }
+
+  function paint() {
+    var lit = Math.floor(progress * words.length);
+    for (var i = 0; i < words.length; i++) {
+      if (i < lit) {
+        words[i].classList.add("is-lit");
+      }
+    }
+  }
+
+  function update() {
+    if (!el || words.length === 0 || progress >= 1) {
+      return;
+    }
+    var rect = el.getBoundingClientRect();
+    var viewport = window.innerHeight || document.documentElement.clientHeight;
+    var trigger = viewport * TRIGGER;
+    var span = rect.height + viewport * STRETCH;
+    var current = (trigger - rect.top) / span;
+    if (current > progress) {
+      progress = Math.min(1, current);
+      paint();
+    }
+  }
+
+  function onScroll() {
+    if (ticking) {
+      return;
+    }
+    ticking = true;
+    window.requestAnimationFrame(function () {
+      ticking = false;
+      update();
+    });
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  document.addEventListener("i18n:applied", build);
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", build);
+  } else {
+    build();
+  }
+})();

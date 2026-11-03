@@ -54,7 +54,13 @@
       "nav.contact": "Contato",
       "hero.ctaPrimary": "Explore minha trajetória",
       "hero.ctaSecondary": "Entre em contato",
+      "certs.label": "Certificações",
+      "certs.link": "Ver todas as minhas certificações no Credly (abre em nova aba)",
       "about.heading": "Sobre",
+      "about.tagline":
+        "Acredito no potencial transformador da inteligência artificial para fazer a sociedade avançar.",
+      "skip": "Pular para o conteúdo",
+      "footer.top": "Voltar ao topo",
       "about.summary":
         "Sou Ulysses Galli, profissional de vendas e estratégia baseado em São Paulo, atualmente Sales Executive na Amazon Web Services (AWS) e 3x AWS Certified. Minha formação une Relações Internacionais, Administração e experiências internacionais, base que sustenta uma trajetória por vendas, estratégia, produto e operações, experiência do cliente, consultoria e marketing. Dedico-me continuamente a inteligência artificial, gestão de relacionamento com clientes, gerenciamento de projetos e consultoria estratégica, buscando conectar visão de negócio, intraempreendedorismo e execução com rigor e elegância.",
       "experience.heading": "Experiência",
@@ -101,7 +107,13 @@
       "nav.contact": "Contact",
       "hero.ctaPrimary": "Explore my work",
       "hero.ctaSecondary": "Get in touch",
+      "certs.label": "Certifications",
+      "certs.link": "View all my certifications on Credly (opens in a new tab)",
       "about.heading": "About",
+      "about.tagline":
+        "I believe in the transformative potential of artificial intelligence to move society forward.",
+      "skip": "Skip to content",
+      "footer.top": "Back to top",
       "about.summary":
         "I'm Ulysses Galli, a sales and strategy professional based in São Paulo, currently a Sales Executive at Amazon Web Services (AWS) and 3x AWS Certified. My background combines International Relations, Business, and international experiences, a foundation behind a career spanning sales, strategy, product and operations, customer experience, consulting, and marketing. I'm continuously focused on artificial intelligence, customer relationship management, project management, and strategic consulting, connecting business vision, intrapreneurship, and execution through rigor and elegance.",
       "experience.heading": "Experience",
@@ -149,7 +161,13 @@
       "nav.contact": "Contacto",
       "hero.ctaPrimary": "Explora mi trayectoria",
       "hero.ctaSecondary": "Ponte en contacto",
+      "certs.label": "Certificaciones",
+      "certs.link": "Ver todas mis certificaciones en Credly (se abre en una nueva pestaña)",
       "about.heading": "Sobre mí",
+      "about.tagline":
+        "Creo en el potencial transformador de la inteligencia artificial para hacer avanzar a la sociedad.",
+      "skip": "Saltar al contenido",
+      "footer.top": "Volver arriba",
       "about.summary":
         "Soy Ulysses Galli, profesional de ventas y estrategia basado en São Paulo, actualmente Sales Executive en Amazon Web Services (AWS) y 3x AWS Certified. Mi formación combina Relaciones Internacionales, Administración y experiencias internacionales, base de una trayectoria por ventas, estrategia, producto y operaciones, experiencia del cliente, consultoría y marketing. Me dedico continuamente a la inteligencia artificial, la gestión de relaciones con clientes, la gestión de proyectos y la consultoría estratégica, conectando la visión de negocio, el intraemprendimiento y la ejecución con rigor y elegancia.",
       "experience.heading": "Experiencia",
@@ -198,7 +216,12 @@
       "nav.contact": "联系",
       "hero.ctaPrimary": "了解我的经历",
       "hero.ctaSecondary": "与我联系",
+      "certs.label": "认证",
+      "certs.link": "在 Credly 查看我的全部认证（在新标签页中打开）",
       "about.heading": "关于",
+      "about.tagline": "我相信人工智能拥有推动社会进步的变革潜力。",
+      "skip": "跳到主要内容",
+      "footer.top": "返回顶部",
       "about.summary":
         "我是 Ulysses Galli，常驻圣保罗的销售与战略专业人士，目前担任亚马逊云科技（AWS）销售主管，并持有三项 AWS 认证。我的背景融合了国际关系、管理学以及多段国际经历，支撑起横跨销售、战略、产品与运营、客户体验、咨询与市场营销的职业经历。我持续专注于人工智能、客户关系管理、项目管理与战略咨询，以严谨而优雅的方式将商业视野、内部创业与执行力相连接。",
       "experience.heading": "经历",
@@ -246,7 +269,13 @@
       "nav.contact": "Kontakt",
       "hero.ctaPrimary": "Meinen Werdegang entdecken",
       "hero.ctaSecondary": "Kontakt aufnehmen",
+      "certs.label": "Zertifizierungen",
+      "certs.link": "Alle meine Zertifizierungen auf Credly ansehen (öffnet in neuem Tab)",
       "about.heading": "Über mich",
+      "about.tagline":
+        "Ich glaube an das transformative Potenzial künstlicher Intelligenz, die Gesellschaft voranzubringen.",
+      "skip": "Zum Inhalt springen",
+      "footer.top": "Nach oben",
       "about.summary":
         "Ich bin Ulysses Galli, Vertriebs- und Strategieprofi mit Sitz in São Paulo, derzeit Sales Executive bei Amazon Web Services (AWS) und 3x AWS Certified. Mein Hintergrund verbindet Internationale Beziehungen, Betriebswirtschaft und internationale Erfahrungen, die Grundlage für einen Werdegang über Vertrieb, Strategie, Produkt und Operations, Customer Experience, Beratung und Marketing. Ich widme mich kontinuierlich künstlicher Intelligenz, Customer-Relationship-Management, Projektmanagement und strategischer Beratung und verbinde unternehmerische Vision, Intrapreneurship und Umsetzung mit Sorgfalt und Eleganz.",
       "experience.heading": "Erfahrung",
@@ -294,7 +323,13 @@
       "nav.contact": "Contact",
       "hero.ctaPrimary": "Découvrir mon parcours",
       "hero.ctaSecondary": "Me contacter",
+      "certs.label": "Certifications",
+      "certs.link": "Voir toutes mes certifications sur Credly (s'ouvre dans un nouvel onglet)",
       "about.heading": "À propos",
+      "about.tagline":
+        "Je crois au potentiel transformateur de l'intelligence artificielle pour faire avancer la société.",
+      "skip": "Aller au contenu",
+      "footer.top": "Retour en haut",
       "about.summary":
         "Je suis Ulysses Galli, professionnel de la vente et de la stratégie basé à São Paulo, actuellement Sales Executive chez Amazon Web Services (AWS) et 3x AWS Certified. Ma formation associe les Relations internationales, la gestion et des expériences internationales, un socle pour un parcours couvrant la vente, la stratégie, le produit et les opérations, l'expérience client, le conseil et le marketing. Je me consacre en continu à l'intelligence artificielle, à la gestion de la relation client, à la gestion de projet et au conseil stratégique, en reliant vision business, intrapreneuriat et exécution avec rigueur et élégance.",
       "experience.heading": "Expérience",
@@ -370,6 +405,14 @@
     }
     if (TITLES[lang]) {
       document.title = TITLES[lang];
+    }
+
+    // Let other scripts (e.g. the word-by-word tagline in main.js) rebuild
+    // anything that depended on the text we just replaced.
+    try {
+      document.dispatchEvent(new CustomEvent("i18n:applied", { detail: { lang: lang } }));
+    } catch (err) {
+      // Very old browsers without CustomEvent: nothing else to notify.
     }
 
     try {

@@ -17,6 +17,7 @@ const DIST = resolve(ROOT, "dist");
 // Everything the published site needs. Add new public files here.
 const SITE_FILES = [
   "index.html",
+  "404.html",
   "styles.css",
   "main.js",
   "i18n.js",

@@ -4,7 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ulysses Galli | Portfólio</title>
+    <meta
+      name="description"
+      content="Ulysses Galli, Sales Executive at Amazon Web Services and 3x AWS Certified. Sales, strategy, and AI, with a background in International Relations (UNIFESP) and Management (FGV)."
+    />
+    <link rel="canonical" href="https://galliuly.com/" />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+    <!-- Link previews (LinkedIn, WhatsApp, X, Slack). Crawlers do not run JS,
+         so these must be absolute URLs in the static HTML. -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Ulysses Galli" />
+    <meta property="og:url" content="https://galliuly.com/" />
+    <meta property="og:title" content="Ulysses Galli | Sales, Strategy and AI" />
+    <meta
+      property="og:description"
+      content="Sales Executive at Amazon Web Services and 3x AWS Certified. Background in International Relations (UNIFESP) and Management (FGV)."
+    />
+    <meta property="og:image" content="https://galliuly.com/assets/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ulysses Galli, Sales Executive at Amazon Web Services" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="pt_BR" />
+    <meta property="profile:first_name" content="Ulysses" />
+    <meta property="profile:last_name" content="Galli" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ulysses Galli | Sales, Strategy and AI" />
+    <meta
+      name="twitter:description"
+      content="Sales Executive at Amazon Web Services and 3x AWS Certified."
+    />
+    <meta name="twitter:image" content="https://galliuly.com/assets/og-image.jpg" />
+    <meta name="theme-color" content="#1a2a4f" />
+
+    <!-- Structured data: tells search engines this page is about a person. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ulysses Galli",
+        "url": "https://galliuly.com/",
+        "image": "https://galliuly.com/assets/og-image.jpg",
+        "jobTitle": "Sales Executive",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Amazon Web Services",
+          "url": "https://aws.amazon.com/"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "Universidade Federal de São Paulo (UNIFESP)" },
+          { "@type": "CollegeOrUniversity", "name": "Fundação Getulio Vargas (FGV)" },
+          { "@type": "CollegeOrUniversity", "name": "Ludwig-Maximilians-Universität München (LMU)" }
+        ],
+        "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressCountry": "BR" },
+        "email": "mailto:ulyssesgalli@gmail.com",
+        "knowsLanguage": ["pt-BR", "en", "es"],
+        "knowsAbout": ["Sales", "Strategy", "Artificial Intelligence", "Cloud Computing", "Consulting", "Project Management"],
+        "sameAs": [
+          "https://www.linkedin.com/in/ulyssesgalli",
+          "https://www.credly.com/users/ulysses-galli"
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,6 +80,8 @@
     <script src="main.js" defer></script>
   </head>
   <body>
+    <!-- Visible only on keyboard focus: jumps past the navigation. -->
+    <a class="skip-link" href="#main" data-i18n="skip">Pular para o conteúdo</a>
     <header>
       <nav aria-label="Primary">
         <ul>
@@ -40,7 +104,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main" tabindex="-1">
       <section id="hero">
         <div class="hero-content">
           <h1>Ulysses Galli</h1>
@@ -117,18 +181,71 @@
             </li>
           </ul>
         </div>
-        <img
-          class="hero-photo"
-          src="assets/profile.jpg"
-          alt="Retrato de Ulysses Galli"
-          loading="lazy"
-          width="320"
-          height="320"
-        />
+        <div class="hero-media">
+          <img
+            class="hero-photo"
+            src="assets/profile.jpg"
+            alt="Retrato de Ulysses Galli"
+            loading="lazy"
+            width="320"
+            height="320"
+          />
+
+          <!--
+            Certifications carousel. One link to the Credly profile wraps the
+            whole strip (all badges point to the same place, so a single tab
+            stop). The badges are decorative inside the link; its accessible
+            name comes from the visually hidden label. main.js duplicates the
+            list and animates it as an infinite marquee; without JS (or with
+            reduced motion) it is a static strip that scrolls sideways.
+          -->
+          <div class="cert-carousel" data-cert-carousel>
+            <p class="cert-carousel-label" data-i18n="certs.label">Certificações</p>
+            <div class="cert-stage">
+              <a
+                class="cert-carousel-link"
+                href="https://www.credly.com/users/ulysses-galli"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="visually-hidden" data-i18n="certs.link">Ver todas as minhas certificações no Credly (abre em nova aba)</span>
+                <span class="cert-viewport">
+                  <span class="cert-track" data-cert-track>
+                    <span class="cert-list">
+                      <img class="cert-badge" src="assets/certs/07-aws-solutions-architect-associate.png" alt="" aria-hidden="true" title="AWS Certified Solutions Architect: Associate" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/19-mckinsey-forward.png" alt="" aria-hidden="true" title="McKinsey.org Forward Program" loading="lazy" width="1024" height="1024" />
+                      <img class="cert-badge" src="assets/certs/20-duolingo-english-test.png" alt="" aria-hidden="true" title="Duolingo English Test" loading="lazy" width="300" height="400" />
+                      <img class="cert-badge" src="assets/certs/02-aws-ai-sales-intermediate.png" alt="" aria-hidden="true" title="AWS AI Accreditation: Sales, Intermediate" loading="lazy" width="660" height="660" />
+                      <img class="cert-badge" src="assets/certs/05-aws-ai-practitioner.png" alt="" aria-hidden="true" title="AWS Certified AI Practitioner" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/12-aws-agentic-ai-essentials.png" alt="" aria-hidden="true" title="AWS Partner: Agentic AI Essentials" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/08-aws-cloud-quest-cloud-practitioner.png" alt="" aria-hidden="true" title="AWS Cloud Quest: Cloud Practitioner" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/17-aws-sales-accredited.png" alt="" aria-hidden="true" title="AWS Partner: Sales Accredited" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/03-aws-ai-business-strategist.png" alt="" aria-hidden="true" title="AWS Certified AI Business Strategist" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/14-aws-generative-ai-essentials.png" alt="" aria-hidden="true" title="AWS Partner: Generative AI Essentials" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/11-aws-transform-fundamentals.png" alt="" aria-hidden="true" title="AWS Knowledge: AWS Transform Fundamentals" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/13-aws-cloud-economics-essentials.png" alt="" aria-hidden="true" title="AWS Partner: Cloud Economics Essentials" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/06-aws-cloud-practitioner.png" alt="" aria-hidden="true" title="AWS Certified Cloud Practitioner" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/16-aws-migration-acceleration-program.png" alt="" aria-hidden="true" title="AWS Partner: Migration Acceleration Program" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/09-aws-cloud-quest-generative-ai.png" alt="" aria-hidden="true" title="AWS Cloud Quest: Generative AI Practitioner" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/18-aws-technical-accredited.png" alt="" aria-hidden="true" title="AWS Partner: Technical Accredited" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/04-aws-ai-business-strategist-early-adopter.png" alt="" aria-hidden="true" title="AWS Certified AI Business Strategist: Early Adopter" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/15-aws-msp-essentials.png" alt="" aria-hidden="true" title="AWS Partner: Managed Service Provider Essentials" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/10-aws-cloud-quest-solutions-architect.png" alt="" aria-hidden="true" title="AWS Cloud Quest: Solutions Architect" loading="lazy" width="600" height="600" />
+                      <img class="cert-badge" src="assets/certs/01-aws-ai-foundational.png" alt="" aria-hidden="true" title="AWS AI Accreditation: Foundational" loading="lazy" width="660" height="660" />
+                    </span>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="about">
         <h2 data-i18n="about.heading">Sobre</h2>
+        <!-- Personal statement. main.js lights the words up one by one on
+             scroll; the text itself stays plain so translations can replace it. -->
+        <p class="tagline" data-tagline data-i18n="about.tagline">Acredito no potencial transformador da inteligência artificial para fazer a sociedade avançar.</p>
         <p class="about-summary" data-i18n="about.summary">
           Sou Ulysses Galli, profissional de vendas e estratégia baseado em São
           Paulo, atualmente Sales Executive na Amazon Web Services (AWS) e 3x AWS
@@ -154,7 +271,7 @@
             <li class="role-entry">
               <h4 class="role-title">Sales Executive</h4>
               <p class="role-period">
-                <time>Jul 2026</time> a <time data-i18n="period.present">Presente</time>
+                <time>Jul 2026</time> - <time data-i18n="period.present">Presente</time>
               </p>
               <span class="highlight-badge">150% quota</span>
               <p class="role-description" data-i18n="exp.aws.sales.desc">
@@ -165,7 +282,7 @@
             <li class="role-entry">
               <h4 class="role-title">Program Manager</h4>
               <p class="role-period">
-                <time>Set 2025</time> a <time>Jul 2026</time>
+                <time>Set 2025</time> - <time>Jul 2026</time>
               </p>
               <p class="role-description" data-i18n="exp.aws.pm.desc">
                 Programas de especialização de parceiros e iniciativas SMB na
@@ -184,7 +301,7 @@
             <li class="role-entry">
               <h4 class="role-title">Product and Operations Analyst</h4>
               <p class="role-period">
-                <time>Dez 2024</time> a <time>Jul 2025</time>
+                <time>Dez 2024</time> - <time>Jul 2025</time>
               </p>
               <p class="role-description" data-i18n="exp.smartv4.poa.desc">
                 Gestão e desenvolvimento de produto, com foco em branding,
@@ -195,7 +312,7 @@
             <li class="role-entry">
               <h4 class="role-title">CX Analyst</h4>
               <p class="role-period">
-                <time>Mar 2024</time> a <time>Dez 2024</time>
+                <time>Mar 2024</time> - <time>Dez 2024</time>
               </p>
               <p class="role-description" data-i18n="exp.smartv4.cx.desc">
                 Customer Journey e gestão de relacionamento com clientes,
@@ -214,7 +331,7 @@
             <li class="role-entry">
               <h4 class="role-title">Relationship Leader</h4>
               <p class="role-period">
-                <time>Jan 2024</time> a <time>Dez 2024</time>
+                <time>Jan 2024</time> - <time>Dez 2024</time>
                 <span data-i18n="period.partTime">(meio período)</span>
               </p>
               <p class="role-description" data-i18n="exp.nucleo.rl.desc">
@@ -235,7 +352,7 @@
             <li class="role-entry">
               <h4 class="role-title">Deliberative Counselor</h4>
               <p class="role-period">
-                <time>Jan 2024</time> a <time>Mar 2024</time>
+                <time>Jan 2024</time> - <time>Mar 2024</time>
               </p>
               <p class="role-description" data-i18n="exp.eppen.dc.desc">
                 Conselho Deliberativo da Diretoria Executiva 2024.
@@ -244,7 +361,7 @@
             <li class="role-entry">
               <h4 class="role-title">Project Management Director</h4>
               <p class="role-period">
-                <time>Jan 2023</time> a <time>Dez 2023</time>
+                <time>Jan 2023</time> - <time>Dez 2023</time>
               </p>
               <p class="role-description" data-i18n="exp.eppen.pmd.desc">
                 Gestão de projetos e equipes, desenvolvimento estratégico,
@@ -255,7 +372,7 @@
             <li class="role-entry">
               <h4 class="role-title">Junior Consultant</h4>
               <p class="role-period">
-                <time>Jun 2022</time> a <time>Jan 2023</time>
+                <time>Jun 2022</time> - <time>Jan 2023</time>
               </p>
               <p class="role-description" data-i18n="exp.eppen.jc.desc">
                 Consultor júnior na área de Projetos, prestando consultoria de
@@ -274,7 +391,7 @@
             <li class="role-entry">
               <h4 class="role-title">Junior Marketing Analyst</h4>
               <p class="role-period">
-                <time>Ago 2023</time> a <time>Fev 2024</time>
+                <time>Ago 2023</time> - <time>Fev 2024</time>
               </p>
               <p class="role-description" data-i18n="exp.kruzer.jma.desc">
                 Branding, gestão de mídia, design, planejamento estratégico de
@@ -307,7 +424,7 @@
               Bacharelado em Relações Internacionais
             </p>
             <p class="edu-period">
-              <time datetime="2022">2022</time> a
+              <time datetime="2022">2022</time> -
               <time datetime="2026">2026</time>
             </p>
           </div>
@@ -333,7 +450,7 @@
               Tecnólogo em Processos Gerenciais
             </p>
             <p class="edu-period">
-              <time datetime="2025">2025</time> a
+              <time datetime="2025">2025</time> -
               <time datetime="2027">2027</time>
             </p>
           </div>
@@ -403,6 +520,9 @@
             <li class="skill">Leadership</li>
             <li class="skill">Public Speaking</li>
             <li class="skill">Certifications</li>
+            <li class="skill">Multilingual Speaker</li>
+            <li class="skill">English</li>
+            <li class="skill">Spanish</li>
           </ul>
         </div>
       </section>
@@ -432,5 +552,16 @@
         </ul>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <span class="footer-monogram" aria-hidden="true">UG<span>.</span></span>
+        <p class="footer-copy">© 2026 Ulysses Galli</p>
+        <a class="footer-top" href="#main">
+          <span data-i18n="footer.top">Voltar ao topo</span>
+          <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+    </footer>
   </body>
 </html>

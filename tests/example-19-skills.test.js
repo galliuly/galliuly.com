@@ -35,6 +35,9 @@ const EXPECTED_SKILLS = [
   "Leadership",
   "Public Speaking",
   "Certifications",
+  "Multilingual Speaker",
+  "English",
+  "Spanish",
 ];
 
 describe("Skills section", () => {

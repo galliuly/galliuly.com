@@ -26,6 +26,25 @@
   --font-serif: "Playfair Display", Georgia, "Times New Roman", serif; /* headings + name (Req 4.1, 1.5) */
   --font-body: Georgia, "Iowan Old Style", "Times New Roman", serif; /* readable serif body */
   --font-size-body: 1rem; /* 16px baseline (Req 5.4) */
+
+  /* Type scale — every font size snaps to one of these steps, each with its
+     paired line height (Tailwind's default scale). The hero name (h1) is the
+     one deliberate exception and keeps its fluid display size. */
+  --text-xs: 0.75rem;   /* 12px */ --leading-xs: 1rem;
+  --text-sm: 0.875rem;  /* 14px */ --leading-sm: 1.25rem;
+  --text-base: 1rem;    /* 16px */ --leading-base: 1.5rem;
+  --text-lg: 1.125rem;  /* 18px */ --leading-lg: 1.75rem;
+  --text-xl: 1.25rem;   /* 20px */ --leading-xl: 1.75rem;
+  --text-2xl: 1.5rem;   /* 24px */ --leading-2xl: 2rem;
+  --text-3xl: 1.875rem; /* 30px */ --leading-3xl: 2.25rem;
+  --text-4xl: 2.25rem;  /* 36px */ --leading-4xl: 2.5rem;
+
+  /* Motion — a curve that decelerates into place, instead of the browser's
+     default "ease". Hover color shifts are quick; movement takes longer. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-hover: 0.3s;
+  --duration-move: 0.5s;
+  --duration-reveal: 0.7s;
 }
 
 /* ---------------------------------------------------------------------------
@@ -69,7 +88,7 @@ html {
 body {
   font-family: var(--font-body);
   font-size: var(--font-size-body);
-  line-height: 1.6;
+  line-height: var(--leading-base);
   color: var(--color-ink); /* dark ink on cream, AA-safe (Req 6.4) */
   background-color: var(--color-bg); /* cream page background (Req 4.3) */
   -webkit-font-smoothing: antialiased;
@@ -123,18 +142,35 @@ h1 {
 }
 
 h2 {
-  font-size: 1.75rem;
+  font-size: var(--text-3xl);
+  line-height: var(--leading-3xl);
   font-weight: 700;
 }
 
 h3 {
-  font-size: 1.375rem;
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
   font-weight: 600;
 }
 
 h4 {
-  font-size: 1.125rem;
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
   font-weight: 600;
+}
+
+/* No lone word on the last line: balanced headings, "pretty" paragraphs. */
+h1,
+h2,
+h3,
+h4,
+.tagline {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
 }
 
 p {
@@ -268,9 +304,19 @@ section > h2 {
   font-size: 1.125rem;
 }
 
-.hero-photo {
+/* Photo + certifications carousel stacked in one column, so the carousel is
+   exactly as wide as the photo above it. */
+.hero-media {
   width: 100%;
   max-width: 20rem;
+  min-width: 0; /* lets the carousel shrink instead of widening the page */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hero-photo {
+  width: 100%;
   border-radius: 4px;
 }
 
@@ -333,14 +379,11 @@ section > h2 {
     flex: 1 1 auto;
   }
 
-  .hero-photo {
+  .hero-media {
     flex: 0 0 auto;
     max-width: 18rem;
   }
 
-  h2 {
-    font-size: 2rem;
-  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -378,8 +421,8 @@ section > h2 {
   border: 1px solid var(--color-accent); /* gold border */
   border-radius: 999px; /* fully rounded pill */
   color: var(--color-primary); /* navy text */
-  font-size: 0.875rem;
-  line-height: 1.2;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
   white-space: nowrap;
 }
 
@@ -393,9 +436,9 @@ section > h2 {
   background-color: var(--color-accent); /* gold fill */
   color: var(--color-bg); /* cream text on gold */
   border-radius: 4px;
-  font-size: 0.8125rem;
+  font-size: var(--text-xs);
   font-weight: 700;
-  line-height: 1.3;
+  line-height: var(--leading-xs);
   letter-spacing: 0.01em;
 }
 
@@ -485,7 +528,8 @@ section > h2 {
 .edu-subtitle {
   color: var(--color-accent); /* gold accent (used as a border/label color, not body text) */
   font-style: italic;
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
 }
 
 .edu-qualification {
@@ -521,7 +565,7 @@ section > h2 {
   color: var(--color-primary);
   text-decoration: none;
   font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
 }
 
 .project-link:hover {
@@ -670,8 +714,8 @@ header nav a.is-active {
   font-size: 1rem;
   text-decoration: none;
   border: 1px solid var(--color-primary);
-  transition: background-color 0.2s ease, color 0.2s ease,
-    transform 0.2s ease;
+  transition: background-color var(--duration-hover) var(--ease-out), color var(--duration-hover) var(--ease-out),
+    transform var(--duration-hover) var(--ease-out);
 }
 
 .cta-primary {
@@ -695,7 +739,7 @@ header nav a.is-active {
 
 /* Arrow nudges to the right on hover — a small, tasteful motion cue. */
 .cta-arrow {
-  transition: transform 0.2s ease;
+  transition: transform var(--duration-hover) var(--ease-out);
 }
 
 .cta:hover .cta-arrow {
@@ -712,8 +756,9 @@ header nav a.is-active {
    --------------------------------------------------------------------------- */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(var(--space-4)); /* rises 32px into place */
+  transition: opacity var(--duration-reveal) var(--ease-out),
+    transform var(--duration-reveal) var(--ease-out);
   will-change: opacity, transform;
 }
 
@@ -726,8 +771,9 @@ header nav a.is-active {
 .reveal .card,
 .reveal .edu-entry {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(var(--space-2));
+  transition: opacity var(--duration-move) var(--ease-out),
+    transform var(--duration-move) var(--ease-out);
 }
 
 .reveal.is-visible .card,
@@ -762,8 +808,9 @@ header nav a.is-active {
 .reveal section > h2,
 .reveal > h2 {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s ease 0.05s, transform 0.6s ease 0.05s;
+  transform: translateY(var(--space-2));
+  transition: opacity var(--duration-reveal) var(--ease-out) 0.05s,
+    transform var(--duration-reveal) var(--ease-out) 0.05s;
 }
 
 .reveal.is-visible > h2 {
@@ -782,13 +829,17 @@ section.reveal > h2::after {
   left: 0;
   bottom: -0.35rem;
   height: 2px;
-  width: 0;
+  width: 2.5rem;
   background-color: var(--color-accent); /* gold underline */
-  transition: width 0.6s ease 0.25s;
+  /* Grow by scaling from the left edge (transform), not by animating width,
+     which would force the browser to recalculate layout every frame. */
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-reveal) var(--ease-out) 0.25s;
 }
 
 section.reveal.is-visible > h2::after {
-  width: 2.5rem; /* grows to a short gold rule when the section reveals */
+  transform: scaleX(1); /* grows to a short gold rule when the section reveals */
 }
 
 /* Respect users who prefer reduced motion: no transforms, no transitions, and
@@ -817,8 +868,9 @@ section.reveal.is-visible > h2::after {
   }
 
   /* Keep the underline visible (no grow animation) under reduced motion. */
+  section.reveal > h2::after,
   section.reveal.is-visible > h2::after {
-    width: 2.5rem;
+    transform: none;
   }
 }
 
@@ -836,13 +888,13 @@ section.reveal.is-visible > h2::after {
 
 .lang-select {
   font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
   color: var(--color-primary);
   background-color: var(--color-bg);
   border: 1px solid var(--color-accent); /* gold border */
   border-radius: 6px;
   padding: 0.25rem 1.75rem 0.25rem 0.6rem;
-  line-height: 1.3;
+  line-height: var(--leading-sm);
   cursor: pointer;
   /* Custom navy chevron so the control matches the palette across browsers. */
   -webkit-appearance: none;
@@ -1044,7 +1096,7 @@ section.reveal.is-visible > h2::after {
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color var(--duration-hover) var(--ease-out), color var(--duration-hover) var(--ease-out);
 }
 
 .org-name a:hover,
@@ -1077,7 +1129,7 @@ section.reveal.is-visible > h2::after {
   border: 1px solid var(--color-accent);
   border-radius: 999px;
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--color-primary);
@@ -1160,7 +1212,7 @@ section.reveal.is-visible > h2::after {
   white-space: nowrap;
   /* Transform origin at the label's own center for smooth scaling. */
   transform: translate(-50%, -50%);
-  transition: color 0.2s ease;
+  transition: color var(--duration-hover) var(--ease-out);
   will-change: transform, opacity;
   user-select: none;
 }
@@ -1176,5 +1228,311 @@ section.reveal.is-visible > h2::after {
 @media (prefers-reduced-motion: reduce) {
   .skill-cloud {
     /* no-op; list fallback stays */
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utility: visually hidden but still read by screen readers.
+   --------------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Certifications carousel — under the hero photo.
+   Base (no JS / reduced motion): a static strip that scrolls sideways inside
+   its own box. main.js duplicates the list and adds .is-animated to the track
+   for a seamless infinite marquee that pauses on hover/focus.
+   --------------------------------------------------------------------------- */
+.cert-carousel {
+  width: 100%;
+  min-width: 0;
+}
+
+.cert-carousel-label {
+  margin-bottom: var(--space-1);
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+/* Arrows on each side, the scrolling strip in the middle. */
+.cert-stage {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.cert-carousel-link {
+  position: relative;
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* Clipping window. Overflow is contained here, so the strip can never push
+   page-level horizontal scroll (Req 5.3). Soft fades on both edges. */
+.cert-viewport {
+  display: block;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* With JS, main.js drives the scroll (auto-advance + arrows), so the native
+   scrollbar is hidden. Swiping on touch screens still works. */
+.cert-carousel.is-enhanced .cert-viewport {
+  scrollbar-width: none;
+}
+
+.cert-carousel.is-enhanced .cert-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mouse drag: a grab hand, and no text/image selection while dragging. */
+.cert-carousel.is-enhanced .cert-viewport {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cert-carousel.is-dragging .cert-viewport {
+  cursor: grabbing;
+}
+
+.cert-track {
+  display: flex;
+  width: max-content;
+}
+
+/* Each copy of the list carries trailing padding equal to the gap, so two
+   copies side by side are exactly periodic and the -50% loop is seamless. */
+.cert-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2) var(--space-1) 0;
+}
+
+.cert-badge {
+  flex: 0 0 auto;
+  width: 3.75rem;
+  height: 3.75rem;
+  object-fit: contain;
+  transition: transform var(--duration-hover) var(--ease-out);
+}
+
+.cert-carousel-link:hover .cert-badge:hover {
+  transform: scale(1.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cert-badge {
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Tagline — a large personal statement at the top of the About section.
+   main.js wraps each word in .tagline-word and lights the words up one at a
+   time, in reading order, as the visitor scrolls. Without JS (or with reduced
+   motion) the text simply shows at full color.
+   --------------------------------------------------------------------------- */
+.tagline {
+  max-width: 42.5rem; /* 680px, so lines break at readable points */
+  margin-bottom: var(--space-4);
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-3xl);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+@media (min-width: 768px) {
+  .tagline {
+    font-size: var(--text-4xl);
+    line-height: var(--leading-4xl);
+  }
+}
+
+.tagline-word {
+  opacity: 0.3; /* muted until the scroll reaches it */
+  transition: opacity var(--duration-move) var(--ease-out);
+}
+
+.tagline-word.is-lit {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Skip link — hidden until a keyboard user tabs to it, then it slides in at
+   the top left and jumps straight to the main content.
+   --------------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 1100; /* above the sticky header */
+  padding: var(--space-1) 0.75rem;
+  border-radius: 6px;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--duration-hover) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* The skip target receives focus programmatically; no ring around all of main. */
+main:focus {
+  outline: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Footer — monogram, copyright, and a way back to the top.
+   --------------------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid rgba(184, 155, 94, 0.45); /* soft gold rule, like the header */
+}
+
+.site-footer-inner {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-primary);
+}
+
+.footer-monogram {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* The gold full stop after the monogram, as in the reference site. */
+.footer-monogram span {
+  color: var(--color-accent);
+}
+
+.footer-copy {
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.footer-top {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-hover) var(--ease-out),
+    transform var(--duration-hover) var(--ease-out);
+}
+
+.footer-top:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+@media (min-width: 768px) {
+  .site-footer-inner {
+    padding: var(--space-4);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   404 page — reuses the site palette and texture (see 404.html).
+   --------------------------------------------------------------------------- */
+.not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-2);
+  text-align: center;
+}
+
+.not-found-code {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.not-found h1 {
+  font-size: var(--text-4xl);
+  line-height: var(--leading-4xl);
+}
+
+.not-found p {
+  max-width: 32rem;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Press feedback — buttons and button-like links compress slightly while
+   pressed, for a physical feel. Transitions already cover transform.
+   --------------------------------------------------------------------------- */
+.contact-link,
+.social-link {
+  transition: background-color var(--duration-hover) var(--ease-out),
+    color var(--duration-hover) var(--ease-out),
+    transform var(--duration-hover) var(--ease-out);
+}
+
+.cta:active,
+.contact-link:active,
+.social-link:active,
+.footer-top:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tagline-word {
+    opacity: 1;
+    transition: none;
+  }
+
+  .skip-link,
+  .footer-top,
+  .contact-link,
+  .social-link {
+    transition: none;
   }
 }

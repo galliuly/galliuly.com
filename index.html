@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ulysses Galli | Portfólio</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="i18n.js" defer></script>
+    <script src="typewriter.js" defer></script>
+    <script src="skillcloud.js" defer></script>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about" data-i18n="nav.about">Sobre</a></li>
+          <li><a href="#experience" data-i18n="nav.experience">Experiência</a></li>
+          <li><a href="#education" data-i18n="nav.education">Formação</a></li>
+          <li><a href="#skills" data-i18n="nav.skills">Áreas de atuação</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="lang-switcher">
+        <select id="lang-select" class="lang-select" aria-label="Selecionar idioma / Select language">
+          <option value="pt-BR">Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="zh">中文</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero">
+        <div class="hero-content">
+          <h1>Ulysses Galli</h1>
+          <p class="hero-headline">
+            <!-- No-JS / accessible fallback: the full headline as plain text
+                 (Req 2.4). The typewriter below replaces it only when JS runs. -->
+            <span class="hero-headline-static"
+              >Sales at Amazon Web Services | 3x AWS Certified | UNIFESP | FGV</span
+            >
+            <!-- Animated typewriter target, decorative; hidden from assistive
+                 tech so the rotating text is not announced repeatedly. JS fills
+                 it and reveals it. -->
+            <span class="hero-typewriter" aria-hidden="true" hidden
+              ><span class="hero-typewriter-text"></span
+              ><span class="hero-typewriter-cursor" aria-hidden="true">|</span></span
+            >
+          </p>
+          <ul class="role-chips">
+            <li class="role-chip">Sales</li>
+            <li class="role-chip">Strategy</li>
+            <li class="role-chip">AI</li>
+          </ul>
+          <div class="hero-ctas">
+            <a class="cta cta-primary" href="#experience">
+              <span data-i18n="hero.ctaPrimary">Explore minha trajetória</span>
+              <span class="cta-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="cta cta-secondary" href="#contact" data-i18n="hero.ctaSecondary">Entre em contato</a>
+          </div>
+          <ul class="social-links" aria-label="Redes sociais">
+            <li>
+              <a
+                class="social-link"
+                href="https://linkedin.com/in/ulyssesgalli"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Perfil no LinkedIn"
+              >
+                <svg
+                  class="social-icon"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social-link"
+                href="mailto:ulyssesgalli@gmail.com"
+                aria-label="Enviar e-mail"
+              >
+                <svg
+                  class="social-icon"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M2 4h20c.55 0 1 .45 1 1v14c0 .55-.45 1-1 1H2c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1zm10 7.4L3.4 6H20.6L12 11.4zM3 8.3V18h18V8.3l-8.47 5.3c-.33.2-.74.2-1.06 0L3 8.3z"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <img
+          class="hero-photo"
+          src="assets/profile.jpg"
+          alt="Retrato de Ulysses Galli"
+          loading="lazy"
+          width="320"
+          height="320"
+        />
+      </section>
+
+      <section id="about">
+        <h2 data-i18n="about.heading">Sobre</h2>
+        <p class="about-summary" data-i18n="about.summary">
+          Sou Ulysses Galli, profissional de vendas e estratégia baseado em São
+          Paulo, atualmente Sales Executive na Amazon Web Services (AWS) e 3x AWS
+          Certified. Minha formação une Relações Internacionais, Administração e
+          experiências internacionais, base que sustenta uma trajetória por
+          vendas, estratégia, produto e operações, experiência do cliente,
+          consultoria e marketing. Dedico-me continuamente a inteligência
+          artificial, gestão de relacionamento com clientes, gerenciamento de
+          projetos e consultoria estratégica, buscando conectar visão de
+          negócio, intraempreendedorismo e execução com rigor e elegância.
+        </p>
+      </section>
+
+      <section id="experience">
+        <h2 data-i18n="experience.heading">Experiência</h2>
+
+        <article class="card org-group">
+          <h3 class="org-name">
+            <a href="https://aws.amazon.com/" target="_blank" rel="noopener noreferrer">Amazon Web Services (AWS)</a>
+            <span class="org-tag">Leading AI</span>
+          </h3>
+          <ol class="roles">
+            <li class="role-entry">
+              <h4 class="role-title">Sales Executive</h4>
+              <p class="role-period">
+                <time>Jul 2026</time> a <time data-i18n="period.present">Presente</time>
+              </p>
+              <span class="highlight-badge">150% quota</span>
+              <p class="role-description" data-i18n="exp.aws.sales.desc">
+                Executivo de vendas; 150% de atingimento de quota de receita no
+                Q3 ainda em onboarding.
+              </p>
+            </li>
+            <li class="role-entry">
+              <h4 class="role-title">Program Manager</h4>
+              <p class="role-period">
+                <time>Set 2025</time> a <time>Jul 2026</time>
+              </p>
+              <p class="role-description" data-i18n="exp.aws.pm.desc">
+                Programas de especialização de parceiros e iniciativas SMB na
+                LATAM; desenvolvimento estratégico e trabalho cross-funcional.
+              </p>
+            </li>
+          </ol>
+        </article>
+
+        <article class="card org-group">
+          <h3 class="org-name">
+            <a href="https://smartv4.com/" target="_blank" rel="noopener noreferrer">Smart V4</a>
+            <span class="org-tag">B2B SaaS Startup</span>
+          </h3>
+          <ol class="roles">
+            <li class="role-entry">
+              <h4 class="role-title">Product and Operations Analyst</h4>
+              <p class="role-period">
+                <time>Dez 2024</time> a <time>Jul 2025</time>
+              </p>
+              <p class="role-description" data-i18n="exp.smartv4.poa.desc">
+                Gestão e desenvolvimento de produto, com foco em branding,
+                implementação e monitoramento de estratégias de marketing e
+                growth.
+              </p>
+            </li>
+            <li class="role-entry">
+              <h4 class="role-title">CX Analyst</h4>
+              <p class="role-period">
+                <time>Mar 2024</time> a <time>Dez 2024</time>
+              </p>
+              <p class="role-description" data-i18n="exp.smartv4.cx.desc">
+                Customer Journey e gestão de relacionamento com clientes,
+                garantindo customer success e qualidade de atendimento.
+              </p>
+            </li>
+          </ol>
+        </article>
+
+        <article class="card org-group">
+          <h3 class="org-name">
+            <a href="https://www.nucleosaopaulo.com.br/" target="_blank" rel="noopener noreferrer">Núcleo São Paulo</a>
+            <span class="org-tag">Junior Enterprise Ecosystem</span>
+          </h3>
+          <ol class="roles">
+            <li class="role-entry">
+              <h4 class="role-title">Relationship Leader</h4>
+              <p class="role-period">
+                <time>Jan 2024</time> a <time>Dez 2024</time>
+                <span data-i18n="period.partTime">(meio período)</span>
+              </p>
+              <p class="role-description" data-i18n="exp.nucleo.rl.desc">
+                Relacionamento, customer journey e representação da organização
+                junto a empresas parceiras, em Customer Success e Customer
+                Experience.
+              </p>
+            </li>
+          </ol>
+        </article>
+
+        <article class="card org-group">
+          <h3 class="org-name">
+            <a href="https://eppenjr.com.br/" target="_blank" rel="noopener noreferrer">EPPEN JR</a>
+            <span class="org-tag">Junior Enterprise made by students</span>
+          </h3>
+          <ol class="roles">
+            <li class="role-entry">
+              <h4 class="role-title">Deliberative Counselor</h4>
+              <p class="role-period">
+                <time>Jan 2024</time> a <time>Mar 2024</time>
+              </p>
+              <p class="role-description" data-i18n="exp.eppen.dc.desc">
+                Conselho Deliberativo da Diretoria Executiva 2024.
+              </p>
+            </li>
+            <li class="role-entry">
+              <h4 class="role-title">Project Management Director</h4>
+              <p class="role-period">
+                <time>Jan 2023</time> a <time>Dez 2023</time>
+              </p>
+              <p class="role-description" data-i18n="exp.eppen.pmd.desc">
+                Gestão de projetos e equipes, desenvolvimento estratégico,
+                otimização de processos, planejamento, validação e controle de
+                atividades.
+              </p>
+            </li>
+            <li class="role-entry">
+              <h4 class="role-title">Junior Consultant</h4>
+              <p class="role-period">
+                <time>Jun 2022</time> a <time>Jan 2023</time>
+              </p>
+              <p class="role-description" data-i18n="exp.eppen.jc.desc">
+                Consultor júnior na área de Projetos, prestando consultoria de
+                negócios a empresas em Marketing, Estratégia e Processos.
+              </p>
+            </li>
+          </ol>
+        </article>
+
+        <article class="card org-group">
+          <h3 class="org-name">
+            <a href="https://kruzer.ai/" target="_blank" rel="noopener noreferrer">Kruzer</a>
+            <span class="org-tag">B2B SaaS Startup</span>
+          </h3>
+          <ol class="roles">
+            <li class="role-entry">
+              <h4 class="role-title">Junior Marketing Analyst</h4>
+              <p class="role-period">
+                <time>Ago 2023</time> a <time>Fev 2024</time>
+              </p>
+              <p class="role-description" data-i18n="exp.kruzer.jma.desc">
+                Branding, gestão de mídia, design, planejamento estratégico de
+                marketing, SEO, tráfego, ABM, posicionamento digital, email
+                marketing e UI Design.
+              </p>
+            </li>
+          </ol>
+        </article>
+      </section>
+
+      <section id="education">
+        <h2 data-i18n="education.heading">Formação</h2>
+
+        <article class="edu-entry">
+          <img
+            class="edu-logo"
+            src="assets/logo-unifesp.png"
+            alt="Logotipo da UNIFESP"
+            loading="lazy"
+            width="960"
+            height="579"
+          />
+          <div class="edu-body">
+            <h3 class="edu-institution">
+              <a href="https://campus.unifesp.br/osa/" target="_blank" rel="noopener noreferrer">UNIFESP, <span data-i18n="edu.unifesp.name">Universidade Federal de São Paulo</span></a>
+            </h3>
+            <p class="edu-subtitle" data-i18n="edu.unifesp.subtitle">Top 10 universidades brasileiras</p>
+            <p class="edu-qualification" data-i18n="edu.unifesp.qualification">
+              Bacharelado em Relações Internacionais
+            </p>
+            <p class="edu-period">
+              <time datetime="2022">2022</time> a
+              <time datetime="2026">2026</time>
+            </p>
+          </div>
+        </article>
+
+        <article class="edu-entry">
+          <img
+            class="edu-logo"
+            src="assets/logo-fgv.webp"
+            alt="Logotipo da FGV"
+            loading="lazy"
+            width="900"
+            height="520"
+          />
+          <div class="edu-body">
+            <h3 class="edu-institution">
+              <a href="https://portal.fgv.br/" target="_blank" rel="noopener noreferrer">FGV, Fundação Getulio Vargas</a>
+            </h3>
+            <p class="edu-subtitle" data-i18n="edu.fgv.subtitle">
+              Na 3ª melhor think tank do mundo fora dos Estados Unidos
+            </p>
+            <p class="edu-qualification" data-i18n="edu.fgv.qualification">
+              Tecnólogo em Processos Gerenciais
+            </p>
+            <p class="edu-period">
+              <time datetime="2025">2025</time> a
+              <time datetime="2027">2027</time>
+            </p>
+          </div>
+        </article>
+
+        <article class="edu-entry">
+          <img
+            class="edu-logo"
+            src="assets/logo-lmu.png"
+            alt="Logotipo da LMU München"
+            loading="lazy"
+            width="400"
+            height="189"
+          />
+          <div class="edu-body">
+            <h3 class="edu-institution">
+              <a href="https://www.lmu.de/en/" target="_blank" rel="noopener noreferrer">LMU München, Ludwig-Maximilians-Universität München</a>
+            </h3>
+            <p class="edu-subtitle" data-i18n="edu.lmu.subtitle">
+              Entre os 20 selecionados para a turma internacional na universidade
+              Top 40 Global
+            </p>
+            <p class="edu-qualification" data-i18n="edu.lmu.qualification">
+              Summer Program: International Management and Communications
+            </p>
+            <p class="edu-period">
+              <time datetime="2025">2025</time>
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section id="skills">
+        <h2 data-i18n="skills.heading">Áreas de atuação</h2>
+        <!--
+          Skill cloud. The <ul> is the accessible, no-JS fallback: a plain,
+          readable list of skills (Req 2.4). skillcloud.js turns it into an
+          animated rotating 3D sphere that responds to scroll and hover; with
+          JS disabled or reduced motion, the list stays as-is.
+        -->
+        <div class="skill-cloud" data-skillcloud>
+          <ul class="skill-list">
+            <li class="skill">Sales</li>
+            <li class="skill">Strategy</li>
+            <li class="skill">AI</li>
+            <li class="skill">Consulting</li>
+            <li class="skill">Marketing</li>
+            <li class="skill">Customer Experience</li>
+            <li class="skill">Project Management</li>
+            <li class="skill">Program Management</li>
+            <li class="skill">International Relations</li>
+            <li class="skill">International Business Management</li>
+            <li class="skill">Relationship Building</li>
+            <li class="skill">Business Development</li>
+            <li class="skill">Go-to-Market</li>
+            <li class="skill">Partnerships</li>
+            <li class="skill">B2B SaaS</li>
+            <li class="skill">Cloud</li>
+            <li class="skill">AWS</li>
+            <li class="skill">Growth</li>
+            <li class="skill">Operations</li>
+            <li class="skill">Branding</li>
+            <li class="skill">Customer Success</li>
+            <li class="skill">Intrapreneurship</li>
+            <li class="skill">Stakeholder Management</li>
+            <li class="skill">Negotiation</li>
+            <li class="skill">Leadership</li>
+            <li class="skill">Public Speaking</li>
+            <li class="skill">Certifications</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2 data-i18n="contact.heading">Contato</h2>
+        <p class="contact-intro" data-i18n="contact.intro">
+          Vamos conversar sobre vendas, estratégia e IA. Fique à vontade para
+          se conectar comigo ou enviar um e-mail.
+        </p>
+        <ul class="contact-links" aria-label="Links de contato">
+          <li>
+            <a
+              class="contact-link"
+              href="https://linkedin.com/in/ulyssesgalli"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="contact-label">LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a class="contact-link" href="mailto:ulyssesgalli@gmail.com">
+              <span class="contact-label">Email</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

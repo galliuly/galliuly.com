@@ -1,0 +1,563 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Scaffold files and semantic HTML skeleton": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137406
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733153887
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733264096
+      }
+    ],
+    "2.1 Fill the Hero_Section (`#hero`)": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137473
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733272169
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733329892
+      }
+    ],
+    "2.2 Fill the About_Section (`#about`)": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137510
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733335269
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733386617
+      }
+    ],
+    "3.1 Build Organization_Group / Role_Entry markup in `#experience`": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137532
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733392330
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733482294
+      }
+    ],
+    "4.1 Build Education_Entry blocks in `#education`": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137564
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733487252
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733550587
+      }
+    ],
+    "4.2 Build project cards in `#projects`": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137593
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733555169
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733624394
+      }
+    ],
+    "4.3 Build the Contact_Section (`#contact`)": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137618
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733629457
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733681016
+      }
+    ],
+    "5. Checkpoint - verify static HTML renders with JS disabled": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137659
+      }
+    ],
+    "6.1 Define palette tokens and typography in `styles.css`": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137685
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733694736
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733780090
+      }
+    ],
+    "6.2 Implement mobile-first layout and sticky nav": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137710
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733792232
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733990824
+      }
+    ],
+    "7.1 Style cards, Role_Chips, and Highlight_Badges": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137732
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734000893
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734091925
+      }
+    ],
+    "7.2 Add visible focus styles": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137760
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734096825
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734159221
+      }
+    ],
+    "8.1 Implement anchor focus management in `main.js`": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137779
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734166207
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734238830
+      }
+    ],
+    "8.2 Implement active-link highlighting": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137798
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734243807
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734344035
+      }
+    ],
+    "9.1 Add a DOM-based test setup": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137817
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734350267
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734541012
+      }
+    ],
+    "10.1 Property test: section ids present and unique": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137836
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734547626
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734649759
+      }
+    ],
+    "10.2 Property test: every non-hero section has a visible heading": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137866
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734548529
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734651217
+      }
+    ],
+    "10.3 Property test: nav links map one-to-one to content sections": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137884
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734549911
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734652100
+      }
+    ],
+    "10.4 Property test: all section text present without JavaScript": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137902
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734550889
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734653507
+      }
+    ],
+    "10.5 Property test: nav anchors have descriptive accessible names": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137921
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734551851
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734654123
+      }
+    ],
+    "11.1 Property test: heading hierarchy does not skip levels": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137939
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734661232
+      }
+    ],
+    "11.2 Property test: every non-decorative image has a text alternative": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137961
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734662131
+      }
+    ],
+    "11.3 Property test: body text meets the contrast threshold": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733137986
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734663581
+      }
+    ],
+    "12.1 Property test: principal palette limited to four colors": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138004
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734664509
+      }
+    ],
+    "12.2 Property test: org groups and project entries are card-bounded": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138022
+      },
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734665356
+      }
+    ],
+    "12.3 Property test: each org group has exactly one organization heading": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138039
+      }
+    ],
+    "12.4 Property test: every role entry is complete": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138058
+      }
+    ],
+    "12.5 Property test: experience groups in reverse chronological order": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138075
+      }
+    ],
+    "12.6 Property test: every project card is complete": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138105
+      }
+    ],
+    "12.7 Property test: every education entry is complete": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138123
+      }
+    ],
+    "13.1 Property test: new-context links use a safe relationship": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138140
+      }
+    ],
+    "13.2 Property test: every contact link has a visible label": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138160
+      }
+    ],
+    "13.3 Property test: no horizontal scrolling on mobile widths": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138176
+      }
+    ],
+    "14.1 Hero content example tests": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138194
+      }
+    ],
+    "14.2 Experience content example tests": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138213
+      }
+    ],
+    "14.3 Education content example tests": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138231
+      }
+    ],
+    "14.4 Palette and focus example tests": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138250
+      }
+    ],
+    "14.5 Responsive and interaction edge-case tests": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138269
+      }
+    ],
+    "15.1 Asset-size check": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138302
+      }
+    ],
+    "15.2 Static-hosting and render smoke check": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138322
+      }
+    ],
+    "16. Final checkpoint - ensure all tests pass": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733138342
+      }
+    ],
+    "2. Author hero and about content": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733386650
+      }
+    ],
+    "3. Author experience content": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733482344
+      }
+    ],
+    "4. Author education, projects, and contact content": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733681074
+      }
+    ],
+    "6. Implement core styling: palette, typography, base layout": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791733990859
+      }
+    ],
+    "7. Implement component styling: cards, chips, badges, focus": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734159261
+      }
+    ],
+    "8. Implement progressive-enhancement JavaScript": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734344075
+      }
+    ],
+    "9. Set up the test harness": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734541064
+      }
+    ],
+    "10. Write structural and navigation property tests": [
+      {
+        "executionId": "e274a74d-9b81-4781-8f4d-94a620009ab8",
+        "chatSessionId": "sess_156c89f7-45f8-4030-b173-1f15a4b86a69",
+        "timestamp": 1791734654153
+      }
+    ]
+  }
+}

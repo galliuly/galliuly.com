@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static one-page portfolio for Ulysses Galli (HTML/CSS/JS, no build step).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "fast-check": "4.10.2",
+    "jsdom": "26.1.0",
+    "vitest": "4.1.11"
+  }
+}

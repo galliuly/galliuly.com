@@ -1,0 +1,1180 @@
+/* styles.css — Portfolio Website for Ulysses Galli */
+/* Task 6.1: palette tokens, typography, and base colors.
+   Layout/nav (6.2), cards/chips/badges (7.1), and focus (7.2) are added in later tasks. */
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   --------------------------------------------------------------------------- */
+:root {
+  /* Principal palette — four colors (Req 4.2) */
+  --color-primary: #1a2a4f; /* navy — headings, nav, primary text accents (Req 4.3) */
+  --color-bg: #f5f1e8; /* cream — page background (Req 4.3) */
+  --color-accent: #b89b5e; /* gold — chip borders, highlight badges (Req 4.4) */
+  --color-ink: #22262b; /* dark ink — body text for AA contrast on cream */
+
+  /* Spacing scale — consistent spacing/alignment (Req 4.5) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 2.5rem;
+  --space-6: 3rem;
+  --space-7: 3.5rem;
+  --space-8: 4rem;
+
+  /* Typography */
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif; /* headings + name (Req 4.1, 1.5) */
+  --font-body: Georgia, "Iowan Old Style", "Times New Roman", serif; /* readable serif body */
+  --font-size-body: 1rem; /* 16px baseline (Req 5.4) */
+}
+
+/* ---------------------------------------------------------------------------
+   Reset
+   --------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Base typography and color
+   --------------------------------------------------------------------------- */
+html {
+  /* 16px baseline so body text never drops below 16px (Req 5.4) */
+  font-size: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+  color: var(--color-ink); /* dark ink on cream, AA-safe (Req 6.4) */
+  background-color: var(--color-bg); /* cream page background (Req 4.3) */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  /* Subtle Ivy League background texture — pure CSS, no image download, so it
+     stays within the asset budget (Req 7.2). Three layers over the cream base:
+     a fine linen weave (two faint diagonal gradients) plus a soft gold vignette
+     at the top. Kept very low-contrast so body text keeps AA contrast against
+     the effective background (Req 6.4). */
+  background-image:
+    radial-gradient(
+      1200px 480px at 50% -10%,
+      rgba(184, 155, 94, 0.1),
+      rgba(184, 155, 94, 0) 70%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      rgba(26, 42, 79, 0.022) 0,
+      rgba(26, 42, 79, 0.022) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(26, 42, 79, 0.022) 0,
+      rgba(26, 42, 79, 0.022) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  background-attachment: fixed; /* texture stays put while content scrolls */
+}
+
+/* Hero name and all section headings use the serif display face (Req 4.1, 1.5) */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  color: var(--color-primary); /* navy headings (Req 4.3) */
+  line-height: 1.2;
+}
+
+h1 {
+  /* Large, display-scale hero name in the reference style — fluidly scales
+     from mobile up to a bold desktop size (~20% smaller than the first pass). */
+  font-size: clamp(2.6rem, 8.8vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+p {
+  color: var(--color-ink);
+}
+
+a {
+  color: var(--color-primary);
+}
+/* ---------------------------------------------------------------------------
+   Task 6.2: Mobile-first layout, sticky navigation, and smooth anchoring
+   Base rules below target Mobile_Layout (<768px). A single
+   @media (min-width: 768px) block near the end introduces Desktop_Layout.
+   (Req 5.1, 5.2)
+   --------------------------------------------------------------------------- */
+
+/* Sticky-header height, reused as the section scroll offset so anchored
+   navigation lands below the header rather than beneath it (Req 3.2). */
+:root {
+  --header-height: 3.5rem;
+}
+
+/* Smooth in-page scrolling even with JavaScript disabled (Req 3.2). */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Images never overflow their container, preventing horizontal scroll on
+   narrow viewports (Req 5.3). */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Navigation_Bar — sticky header (Req 3.4)
+   --------------------------------------------------------------------------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--color-bg); /* cream, consistent with palette (Req 4.3) */
+  border-bottom: 1px solid var(--color-accent); /* subtle gold rule */
+
+  /* Lay out the primary nav and the language switcher side by side, wrapping
+     on narrow screens so neither forces page-level horizontal scroll
+     (Req 5.3). */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-2);
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: var(--space-1) var(--space-2);
+}
+
+/* The nav is a horizontal list that wraps on mobile and, if it would still
+   overflow, scrolls within the bar — never pushing page-level horizontal
+   scroll (Req 5.3). */
+header nav {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  align-items: center;
+  /* Allow horizontal scroll contained to the bar as a last resort on very
+     narrow screens, without triggering document-level overflow. */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+header nav a {
+  display: inline-block;
+  padding: var(--space-1) 0;
+  color: var(--color-primary); /* navy nav links (Req 4.3) */
+  text-decoration: none;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------------------
+   Content container and section rhythm
+   --------------------------------------------------------------------------- */
+main {
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 var(--space-2); /* horizontal breathing room, fluid width */
+}
+
+/* Consistent vertical spacing between sections from the shared scale
+   (Req 4.5), and an offset so anchored jumps clear the sticky header
+   (Req 3.2). */
+section {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+  scroll-margin-top: var(--header-height);
+}
+
+section > h2 {
+  margin-bottom: var(--space-3);
+}
+
+/* ---------------------------------------------------------------------------
+   Hero — stacked on mobile, side-by-side on desktop
+   --------------------------------------------------------------------------- */
+#hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hero-headline {
+  font-size: 1.125rem;
+}
+
+.hero-photo {
+  width: 100%;
+  max-width: 20rem;
+  border-radius: 4px;
+}
+
+/* Role_Chips and social links as horizontal wrapping lists (bullets removed);
+   interior chip/badge visual styling is handled in task 7.1. */
+.role-chips,
+.social-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  align-items: center;
+}
+
+/* Contact link-in-bio list also lays out as a wrapping list without bullets. */
+.contact-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ---------------------------------------------------------------------------
+   Card and entry rhythm (layout-level only; surface/border detail in 7.1)
+   --------------------------------------------------------------------------- */
+.card,
+.edu-entry {
+  margin-bottom: var(--space-3);
+}
+
+.roles {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ---------------------------------------------------------------------------
+   Desktop_Layout — single breakpoint at 768px (Req 5.1, 5.2)
+   --------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  main {
+    padding: 0 var(--space-4);
+  }
+
+  section {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  /* Hero text and photo sit side by side; text comes first in source order. */
+  #hero {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+
+  .hero-content {
+    flex: 1 1 auto;
+  }
+
+  .hero-photo {
+    flex: 0 0 auto;
+    max-width: 18rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Task 7.1: Component styling — cards, Role_Chips, Highlight_Badges, and
+   supporting polish. Minimalist, consistent with the navy/cream/gold palette
+   (Req 4.4, 4.5, 4.6, 4.7). Focus styles are handled in task 7.2.
+   --------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   Cards — Organization_Groups and project entries (Req 4.7)
+   Bounded surfaces: a slightly lighter-than-cream surface with a subtle gold
+   border, rounded corners, generous padding from the spacing scale, and a
+   very subtle shadow. Body text keeps AA contrast on the light surface.
+   --------------------------------------------------------------------------- */
+.card {
+  background-color: #faf7f0; /* a touch lighter than cream, still warm */
+  border: 1px solid rgba(184, 155, 94, 0.45); /* soft gold border (--color-accent) */
+  border-radius: 8px;
+  padding: var(--space-3);
+  box-shadow: 0 1px 2px rgba(26, 42, 79, 0.06); /* very subtle navy-tinted shadow */
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: var(--space-4);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Role_Chips — inline pills with a gold border (Req 4.4)
+   --------------------------------------------------------------------------- */
+.role-chip {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-accent); /* gold border */
+  border-radius: 999px; /* fully rounded pill */
+  color: var(--color-primary); /* navy text */
+  font-size: 0.875rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Highlight_Badges — small gold-filled labels (Req 4.4)
+   Cream text on gold keeps a readable, high-contrast label.
+   --------------------------------------------------------------------------- */
+.highlight-badge {
+  display: inline-block;
+  padding: 0.125rem var(--space-1);
+  background-color: var(--color-accent); /* gold fill */
+  color: var(--color-bg); /* cream text on gold */
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+/* ---------------------------------------------------------------------------
+   Experience — Organization_Group and Role_Entry polish
+   --------------------------------------------------------------------------- */
+.org-name {
+  margin-bottom: var(--space-2);
+}
+
+.role-entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.role-title {
+  margin: 0;
+}
+
+.role-period {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  opacity: 0.75; /* muted secondary line */
+}
+
+.role-period time {
+  white-space: nowrap;
+}
+
+.role-description {
+  margin: 0;
+}
+
+/* Keep the badge tight to its role rather than stretching full width. */
+.role-entry .highlight-badge {
+  align-self: flex-start;
+}
+
+/* ---------------------------------------------------------------------------
+   Education — entry polish; subtitle in muted gold accent
+   --------------------------------------------------------------------------- */
+.edu-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+/* Institution logo: a bounded badge beside the entry text. The official logos
+   have very different aspect ratios (UNIFESP near-square, FGV and LMU wide),
+   so the box is a generous rectangle with a white backdrop and substantial
+   interior padding. object-fit: contain scales each logo to fit entirely
+   within the padded area, so no logo is ever cropped or distorted, and the
+   padding keeps a clear margin around every mark (as requested). */
+.edu-logo {
+  flex: 0 0 auto;
+  width: 6.5rem;
+  height: 4rem;
+  object-fit: contain;
+  background-color: #ffffff; /* clean backdrop so black marks read on cream */
+  border: 1px solid rgba(184, 155, 94, 0.45); /* soft gold frame (--color-accent) */
+  border-radius: 8px;
+  padding: var(--space-2); /* significant breathing room so marks don't touch edges */
+}
+
+/* The text column holds the institution name, subtitle, qualification, period. */
+.edu-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+@media (min-width: 768px) {
+  .edu-logo {
+    width: 8rem;
+    height: 4.75rem;
+  }
+}
+
+.edu-institution {
+  margin-bottom: 0;
+}
+
+.edu-subtitle {
+  color: var(--color-accent); /* gold accent (used as a border/label color, not body text) */
+  font-style: italic;
+  font-size: 0.9375rem;
+}
+
+.edu-qualification {
+  margin: 0;
+}
+
+.edu-period {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  opacity: 0.75; /* muted */
+}
+
+.edu-period time {
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Projects — card content and link styled as a button
+   --------------------------------------------------------------------------- */
+.project-name {
+  margin-bottom: var(--space-1);
+}
+
+.project-description {
+  margin: 0 0 var(--space-3);
+}
+
+.project-link {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-primary);
+  border-radius: 6px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+}
+
+.project-link:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg); /* cream text on navy */
+}
+
+/* ---------------------------------------------------------------------------
+   Hero headline polish
+   --------------------------------------------------------------------------- */
+.hero-headline {
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------------
+   Social links — sizing and color for the inline SVG icons
+   --------------------------------------------------------------------------- */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary); /* icon inherits via fill: currentColor */
+  line-height: 0;
+}
+
+.social-link:hover {
+  color: var(--color-accent); /* gold on hover */
+}
+
+.social-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Contact — intro plus link-in-bio buttons/pills
+   --------------------------------------------------------------------------- */
+.contact-intro {
+  margin-bottom: var(--space-3);
+  max-width: 42rem;
+}
+
+.contact-link {
+  display: inline-block;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-primary);
+  border-radius: 999px; /* rounded link-in-bio pill */
+  color: var(--color-primary);
+  text-decoration: none;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+}
+
+.contact-link:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg); /* cream text on navy */
+}
+
+.contact-label {
+  display: inline-block;
+}
+
+/* ---------------------------------------------------------------------------
+   Task 7.2: Visible focus styles (Req 6.5)
+   A single global :focus-visible outline draws a clear indicator on every
+   focusable element during keyboard navigation. The gold accent reads
+   strongly against both the cream page background and the lighter card
+   surfaces; a navy ring around the outline adds separation on gold-filled
+   elements (badges, project/contact hover states) so the indicator stays
+   visible there too. outline-offset lifts the ring off the element edge.
+   --------------------------------------------------------------------------- */
+
+/* Keyboard focus — a clearly visible gold outline on all focusable elements.
+   :focus-visible targets genuine keyboard focus, so pointer clicks do not
+   draw the ring. */
+:focus-visible {
+  outline: 2px solid var(--color-accent); /* gold ring, visible on cream + cards */
+  outline-offset: 2px;
+  /* Navy halo guarantees the ring stays visible even over gold-filled
+     surfaces (e.g. highlight badges, hovered pill/button links). */
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+/* Fallback for browsers without :focus-visible support — keep a visible
+   outline on plain :focus, then clear it where :focus-visible is understood
+   so mouse users do not see a ring. */
+:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Navigation-target sections receive programmatic focus (main.js sets
+   tabindex="-1" on the target in task 8) when reached via click/anchor.
+   Suppress the outline there so a mouse/anchor jump does not leave a
+   distracting ring around a whole section; genuine keyboard focus on the
+   interactive elements inside still shows the :focus-visible ring above. */
+section:focus,
+section[tabindex="-1"]:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Task 8.2: Active nav link (cosmetic, set by main.js via IntersectionObserver)
+   The anchor for the section currently in view gets the "is-active" class
+   (and aria-current="true"). A gold underline and navy weight mark it as the
+   current section, consistent with the navy/cream/gold palette. Purely
+   decorative: with JavaScript disabled the class is never added and links
+   render in their default state.
+   --------------------------------------------------------------------------- */
+header nav a.is-active {
+  color: var(--color-primary); /* navy, as the current-section link */
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent); /* gold accent underline */
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+   Hero CTAs — primary + secondary call-to-action buttons in the hero,
+   mirroring the reference layout ("Explore my work" / "Get in touch").
+   Navy-filled primary and outlined secondary, both in the palette.
+   --------------------------------------------------------------------------- */
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid var(--color-primary);
+  transition: background-color 0.2s ease, color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cta-primary {
+  background-color: var(--color-primary); /* navy fill */
+  color: var(--color-bg); /* cream text on navy — AA contrast */
+}
+
+.cta-primary:hover {
+  background-color: #223760; /* a touch lighter navy on hover */
+}
+
+.cta-secondary {
+  background-color: transparent;
+  color: var(--color-primary); /* navy text */
+}
+
+.cta-secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* Arrow nudges to the right on hover — a small, tasteful motion cue. */
+.cta-arrow {
+  transition: transform 0.2s ease;
+}
+
+.cta:hover .cta-arrow {
+  transform: translateX(3px);
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll-reveal motion — progressive enhancement (main.js adds .reveal to
+   sections/cards and toggles .is-visible via IntersectionObserver).
+   Content starts slightly down and faded, then eases into place when it
+   enters the viewport. The authored HTML is fully visible with JS disabled,
+   so this never hides content (Req 2.4): the "hidden" state is only applied
+   by the .reveal class, which JS adds.
+   --------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger child cards/entries within a revealed section for a gentle cascade. */
+.reveal .card,
+.reveal .edu-entry {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-visible .card,
+.reveal.is-visible .edu-entry {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.is-visible .card:nth-child(2),
+.reveal.is-visible .edu-entry:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+.reveal.is-visible .card:nth-child(3),
+.reveal.is-visible .edu-entry:nth-child(3) {
+  transition-delay: 0.16s;
+}
+
+.reveal.is-visible .card:nth-child(4),
+.reveal.is-visible .edu-entry:nth-child(4) {
+  transition-delay: 0.24s;
+}
+
+.reveal.is-visible .card:nth-child(5),
+.reveal.is-visible .edu-entry:nth-child(5) {
+  transition-delay: 0.32s;
+}
+
+/* Section-heading motion: within a revealed section, the <h2> slides up a bit
+   further and a gold underline grows in beneath it, giving the title its own
+   accent beyond the section fade. */
+.reveal section > h2,
+.reveal > h2 {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease 0.05s, transform 0.6s ease 0.05s;
+}
+
+.reveal.is-visible > h2 {
+  opacity: 1;
+  transform: none;
+}
+
+/* The sections themselves carry .reveal, so target their direct h2. */
+section.reveal > h2 {
+  position: relative;
+}
+
+section.reveal > h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  height: 2px;
+  width: 0;
+  background-color: var(--color-accent); /* gold underline */
+  transition: width 0.6s ease 0.25s;
+}
+
+section.reveal.is-visible > h2::after {
+  width: 2.5rem; /* grows to a short gold rule when the section reveals */
+}
+
+/* Respect users who prefer reduced motion: no transforms, no transitions, and
+   content is always fully visible regardless of the reveal state. */
+@media (prefers-reduced-motion: reduce) {
+  .cta,
+  .cta-arrow,
+  .reveal,
+  .reveal .card,
+  .reveal .edu-entry,
+  .reveal > h2,
+  section.reveal > h2::after {
+    transition: none;
+  }
+
+  .reveal,
+  .reveal.is-visible,
+  .reveal .card,
+  .reveal .edu-entry,
+  .reveal.is-visible .card,
+  .reveal.is-visible .edu-entry,
+  .reveal > h2,
+  .reveal.is-visible > h2 {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Keep the underline visible (no grow animation) under reduced motion. */
+  section.reveal.is-visible > h2::after {
+    width: 2.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Language switcher — sits in the header beside the primary nav.
+   Styled in the navy/cream/gold palette: a cream select with a gold border
+   and navy serif text, consistent with the Ivy League aesthetic.
+   --------------------------------------------------------------------------- */
+.lang-switcher {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.lang-select {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  color: var(--color-primary);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-accent); /* gold border */
+  border-radius: 6px;
+  padding: 0.25rem 1.75rem 0.25rem 0.6rem;
+  line-height: 1.3;
+  cursor: pointer;
+  /* Custom navy chevron so the control matches the palette across browsers. */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%231a2a4f'%3E%3Cpath d='M4 6l4 4 4-4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 0.75rem;
+}
+
+.lang-select:hover {
+  border-color: var(--color-primary);
+}
+
+/* ---------------------------------------------------------------------------
+   Hero typewriter — rotating phrases typed and deleted in the headline.
+   Progressive enhancement: the static headline is shown by default (and with
+   JS disabled); main.js hides it, reveals .hero-typewriter, and animates the
+   text. The blinking cursor uses the gold accent, consistent with the palette.
+   --------------------------------------------------------------------------- */
+
+/* When JS is active it adds .has-typewriter to the <p.hero-headline>, which
+   hides the static fallback and shows the animated span. Without that class
+   (no JS), the static headline stays visible and the typewriter stays hidden
+   via its [hidden] attribute. */
+.hero-headline.has-typewriter .hero-headline-static {
+  display: none;
+}
+
+.hero-headline .hero-typewriter {
+  display: inline;
+}
+
+/* Keep the line height stable while characters are added/removed. */
+.hero-typewriter {
+  white-space: pre-wrap;
+}
+
+.hero-typewriter-text {
+  /* Inherits the navy serif headline styling from .hero-headline. */
+}
+
+.hero-typewriter-cursor {
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--color-accent); /* gold cursor */
+  font-weight: 400;
+  animation: hero-cursor-blink 1s step-end infinite;
+}
+
+@keyframes hero-cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Reduced motion: no blinking cursor and no typing — the typewriter, if shown,
+   simply holds a steady phrase. (main.js also skips the animation loop.) */
+@media (prefers-reduced-motion: reduce) {
+  .hero-typewriter-cursor {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Experience as a vertical timeline (newest at top → oldest at bottom).
+   The org groups keep the .card class in the markup (so Req 4.7 / the bounded
+   "card component" invariant still holds), but inside #experience the card's
+   white fill, border, and shadow are removed so this section reads visually
+   distinct from the Projects cards. A gold rail runs down the left with a node
+   per organization.
+   --------------------------------------------------------------------------- */
+
+/* The section is the positioning context for the vertical rail. */
+#experience {
+  position: relative;
+}
+
+/* Strip the card surface here: no white fill, border, or shadow — the timeline
+   provides the structure instead. */
+#experience .org-group.card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0 0 var(--space-5) 0; /* vertical rhythm between timeline entries */
+  position: relative;
+  margin-bottom: 0;
+}
+
+/* Indent group content to clear the rail, and draw the rail + node. On mobile
+   the rail sits close to the left edge. */
+#experience .roles,
+#experience .org-name {
+  margin-left: var(--space-5);
+}
+
+/* The vertical rail: a gold line running through each group, connecting the
+   nodes into one continuous timeline. */
+#experience .org-group.card::before {
+  content: "";
+  position: absolute;
+  left: 0.3125rem; /* centers the 2px line under the node */
+  top: 0.4rem;
+  bottom: 0;
+  width: 2px;
+  background-color: rgba(184, 155, 94, 0.5); /* soft gold rail */
+}
+
+/* The last group's rail stops at its node rather than trailing past the end. */
+#experience .org-group.card:last-child::before {
+  bottom: auto;
+  height: calc(100% - 0.4rem);
+}
+
+/* The node: a gold dot marking each organization on the rail. */
+#experience .org-group.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--color-accent); /* gold node */
+  border: 2px solid var(--color-bg); /* cream ring so it reads against the rail */
+  box-shadow: 0 0 0 1px rgba(184, 155, 94, 0.6);
+}
+
+@media (min-width: 768px) {
+  #experience .roles,
+  #experience .org-name {
+    margin-left: var(--space-6);
+  }
+
+  #experience .org-group.card::before {
+    left: 0.4375rem;
+  }
+
+  #experience .org-group.card::after {
+    width: 0.9rem;
+    height: 0.9rem;
+    top: 0.25rem;
+  }
+}
+
+/* Keep the timeline nodes/rail steady under the reveal animation (the cards'
+   generic reveal transforms could otherwise drag the absolutely-positioned
+   rail); the section fade still applies to the content. */
+
+/* ---------------------------------------------------------------------------
+   Projects — three-column grid on desktop, single column on mobile.
+   The project cards keep their card surface (unlike the Experience timeline),
+   so this section stays visually distinct.
+   --------------------------------------------------------------------------- */
+#projects {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: single column */
+  gap: var(--space-3);
+}
+
+/* The section heading spans the full width above the grid of cards. */
+#projects > h2 {
+  grid-column: 1 / -1;
+}
+
+/* Each project card lays its content in a column so the "View project" link
+   sits at the bottom even when descriptions differ in length. */
+#projects .project {
+  display: flex;
+  flex-direction: column;
+}
+
+#projects .project .project-link {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+@media (min-width: 768px) {
+  #projects {
+    grid-template-columns: repeat(3, 1fr); /* three columns side by side */
+    gap: var(--space-4);
+    align-items: stretch;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Institution / organization links — the name is a link to the official site.
+   Keep headings readable: link inherits the heading color, with a subtle gold
+   underline on hover/focus rather than the default browser blue.
+   --------------------------------------------------------------------------- */
+.org-name a,
+.edu-institution a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.org-name a:hover,
+.edu-institution a:hover,
+.org-name a:focus-visible,
+.edu-institution a:focus-visible {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-accent); /* gold underline accent */
+}
+
+/* An external-link marker after institution links, so it's clear they leave
+   the site. Decorative, hidden from assistive tech. */
+.org-name a[target="_blank"]::after,
+.edu-institution a[target="_blank"]::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: 0.25rem;
+  font-size: 0.75em;
+  color: var(--color-accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Company tag — a small label beside certain organization names
+   (e.g. "B2B SaaS Startup"), in the gold accent, like a quiet qualifier.
+   --------------------------------------------------------------------------- */
+.org-tag {
+  display: inline-block;
+  margin-left: var(--space-1);
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Skills — rotating 3D word cloud (sphere). skillcloud.js positions each
+   .skill on a sphere and rotates it, responding to scroll and hover.
+   Without JS (or under reduced motion) the .skill-list is a plain, readable
+   list of skills, preserving the no-JS content requirement (Req 2.4).
+   --------------------------------------------------------------------------- */
+
+/* No-JS / fallback: a centered, wrapping list of skill pills. */
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  padding: 0;
+}
+
+.skill {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* When JS activates the sphere, the container becomes a positioned stage and
+   the list is absolutely laid out in 3D. */
+.skill-cloud.is-active {
+  position: relative;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  /* Isolate a new stacking context so the per-label z-index values (set by JS
+     to fake sphere depth, up to ~100) are resolved WITHIN the cloud and never
+     compete with the sticky header. Without this, front-facing labels would
+     render over the header on scroll. */
+  isolation: isolate;
+  z-index: 0;
+  /* Labels orbit toward the sphere's edges; clip anything that would extend
+     past the stage so a long label can never push page-level horizontal
+     scroll on narrow viewports (Req 5.3). */
+  overflow: hidden;
+  /* Square-ish stage; height is set inline by JS to match the chosen radius. */
+  cursor: grab;
+  touch-action: pan-y; /* allow vertical page scroll on touch over the cloud */
+}
+
+.skill-cloud.is-active:active {
+  cursor: grabbing;
+}
+
+.skill-cloud.is-active .skill-list {
+  display: block;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each skill becomes an absolutely-positioned, GPU-friendly 3D label. The
+   pill border/background is dropped in sphere mode for a cleaner cloud; JS
+   sets left/top/opacity/scale per frame via transform. */
+.skill-cloud.is-active .skill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  white-space: nowrap;
+  /* Transform origin at the label's own center for smooth scaling. */
+  transform: translate(-50%, -50%);
+  transition: color 0.2s ease;
+  will-change: transform, opacity;
+  user-select: none;
+}
+
+/* Hover accent: a skill lifts to gold when the pointer is over it. */
+.skill-cloud.is-active .skill.is-hot {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* Reduced motion: never activate the sphere — keep the readable list. The JS
+   also checks this and bails out, so .is-active is never added. */
+@media (prefers-reduced-motion: reduce) {
+  .skill-cloud {
+    /* no-op; list fallback stays */
+  }
+}

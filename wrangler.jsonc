@@ -1,0 +1,17 @@
+// Cloudflare Workers config for the static portfolio.
+//
+// The Worker serves ONLY the generated dist/ folder (built by
+// `npm run build`), so tests, specs (.kiro/), and package files in the repo
+// root are never published.
+{
+  // Must match the Worker name in the Cloudflare dashboard.
+  "name": "galliuly-com",
+  "compatibility_date": "2026-01-01",
+  "assets": {
+    "directory": "./dist"
+  },
+  // Keep the *.workers.dev address and preview URLs enabled (silences the
+  // build warnings; set to false later if you only want galliuly.com).
+  "workers_dev": true,
+  "preview_urls": true
+}
